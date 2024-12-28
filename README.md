@@ -17,7 +17,7 @@ Antes de ejecutar la aplicación, asegúrate de tener instalados los siguientes 
 Clona el repositorio en tu máquina local:
 
 ```bash
-git clone <URL del repositorio>
+git clone <https://github.com/andresfelipe3112/seek.git>
 cd candidate-management-api
 ```
 
@@ -195,7 +195,7 @@ Si necesitas enviar la configuración por correo electrónico, asegúrate de adj
 
 Envíalos a la dirección de correo de tu equipo o cliente, proporcionando las instrucciones adecuadas.
 
-## link de test
+## terminal de test
 
 1. go test ./test/controllers
 
