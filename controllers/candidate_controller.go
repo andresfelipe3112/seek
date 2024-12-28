@@ -12,7 +12,7 @@ import (
 )
 
 type CandidateController struct {
-    Service *service.CandidateService
+    Service service.CandidateServiceInterface
 }
 
 var secretKey = os.Getenv("SECRET_KEY")
