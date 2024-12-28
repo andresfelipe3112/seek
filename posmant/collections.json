@@ -1,0 +1,138 @@
+{
+    "info": {
+      "_postman_id": "d3b69f69-f1e1-4fa6-b8b0-d61ab8d8b4f5",
+      "name": "Candidate Management API",
+      "description": "Collection for testing Candidate Management API",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Get All Candidates",
+        "request": {
+          "method": "GET",
+          "header": [
+            {
+              "key": "Authorization",
+              "value": "Bearer <token>"
+            }
+          ],
+          "url": {
+            "raw": "http://localhost:8080/candidates",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "candidates"
+            ]
+          }
+        },
+        "response": [
+          {
+            "status": "OK",
+            "code": 200,
+            "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"gender\": \"Male\",\n    \"salary_expected\": 50000,\n    \"created_at\": \"2024-12-27T10:00:00Z\"\n  }\n]",
+            "header": []
+          },
+          {
+            "status": "Internal Server Error",
+            "code": 500,
+            "body": "{\n  \"error\": \"Error fetching candidates\"\n}",
+            "header": []
+          }
+        ]
+      },
+      {
+        "name": "Create Candidate",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Authorization",
+              "value": "Bearer <token>"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "url": {
+            "raw": "http://localhost:8080/candidates",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "candidates"
+            ]
+          },
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Jane Smith\",\n  \"email\": \"jane@example.com\",\n  \"gender\": \"Female\",\n  \"salary_expected\": 60000\n}"
+          }
+        },
+        "response": [
+          {
+            "status": "Created",
+            "code": 201,
+            "body": "{\n  \"message\": \"Candidate created successfully\"\n}",
+            "header": []
+          },
+          {
+            "status": "Bad Request",
+            "code": 400,
+            "body": "{\n  \"error\": \"Invalid request\"\n}",
+            "header": []
+          },
+          {
+            "status": "Internal Server Error",
+            "code": 500,
+            "body": "{\n  \"error\": \"Error creating candidate\"\n}",
+            "header": []
+          }
+        ]
+      },
+      {
+        "name": "Generate  Bearer <token>",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "url": {
+            "raw": "http://localhost:8080/login/get-token",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "login",
+              "get-token"
+            ]
+          },
+          "body": {
+            "mode": "raw",
+            "raw": "{}"
+          }
+        },
+        "response": [
+          {
+            "status": "OK",
+            "code": 200,
+            "body": "{\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.Sj3i5rZZ_R4VbS0bFQ9TOOsgAfzVuFwGG0ih3q_s8dc\"\n}",
+            "header": []
+          },
+          {
+            "status": "Internal Server Error",
+            "code": 500,
+            "body": "{\n  \"error\": \"Error generating token\"\n}",
+            "header": []
+          }
+        ]
+      }
+    ]
+  }
+  

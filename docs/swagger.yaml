@@ -1,0 +1,109 @@
+basePath: /
+definitions:
+  models.Candidate:
+    properties:
+      created_at:
+        type: string
+      email:
+        type: string
+      gender:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      salary_expected:
+        type: number
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is the API documentation for the Candidate Management application.
+  termsOfService: http://swagger.io/terms/
+  title: Candidate Management API
+  version: "1.0"
+paths:
+  /candidates:
+    get:
+      description: Fetch all candidates from the database
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Candidate'
+            type: array
+        "500":
+          description: Error fetching candidates
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get all candidates
+      tags:
+      - Candidates
+    post:
+      consumes:
+      - application/json
+      description: Add a new candidate to the database
+      parameters:
+      - description: Candidate details
+        in: body
+        name: candidate
+        required: true
+        schema:
+          $ref: '#/definitions/models.Candidate'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Candidate created successfully
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid request
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Error creating candidate
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Create a new candidate
+      tags:
+      - Candidates
+  /login/get-token:
+    post:
+      description: Generate a JWT token for authentication
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: A JWT token
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Error message
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Generate a JWT token
+      tags:
+      - Authentication
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
