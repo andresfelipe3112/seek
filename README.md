@@ -18,7 +18,6 @@ Clona el repositorio en tu máquina local:
 
 ```bash
 git clone <https://github.com/andresfelipe3112/seek.git>
-cd candidate-management-api
 ```
 
 ### 2. Variables de Entorno
